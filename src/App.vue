@@ -1,12 +1,22 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <nav>
+        <ul>
+          <router-link tag="li" to="/" exact><a>home</a></router-link>
+          <router-link tag="li" to="/about"><a>about</a></router-link>
+          <router-link tag="li" to="/login"><a>login</a></router-link>
+        </ul>
+      </nav>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+
+</script>
+
 
 <style>
 #app {
@@ -17,7 +27,7 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  padding: 0px;
 }
 
 #nav a {
@@ -27,5 +37,29 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+nav {
+  background-color: #4fc08d;
+}
+ul > li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+ul > li > a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  transition: all .3s ease-in-out;
+}
+.router-link-active > a,
+ul > li > a:hover {
+  background-color: #fff;
+  color: #4fc08d;
 }
 </style>
