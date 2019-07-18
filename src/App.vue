@@ -47,8 +47,8 @@ ul > li {
   margin: 0;
   padding: 0;
   width: 100px;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
   text-align: center;
 }
 ul > li > a {
