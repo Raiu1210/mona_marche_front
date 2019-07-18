@@ -3,9 +3,9 @@
     <div id="nav">
       <nav>
         <ul>
-          <router-link tag="li" to="/" exact><a>home</a></router-link>
-          <router-link tag="li" to="/about"><a>about</a></router-link>
-          <router-link tag="li" to="/login"><a>login</a></router-link>
+          <router-link tag="li" to="/" exact><a>ホーム</a></router-link>
+          <router-link tag="li" to="/goods_list"><a>商品一覧</a></router-link>
+          <router-link tag="li" to="/login"><a>ログイン</a></router-link>
         </ul>
       </nav>
     </div>
@@ -46,7 +46,7 @@ ul > li {
   display: inline-block;
   margin: 0;
   padding: 0;
-  width: 80px;
+  width: 100px;
   height: 40px;
   line-height: 40px;
   text-align: center;
