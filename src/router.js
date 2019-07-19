@@ -14,12 +14,17 @@ export default new Router({
     {
       path: '/goods_list',
       name: 'goods_list',
-      component: () => import(/* webpackChunkName: "about" */ './views/Goods_list.vue')
+      component: () => import('./views/Goods_list.vue')
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import(/* webpackChunkName: "about" */ './views/Login.vue')
+      path: '/display_goods',
+      name: 'display_goods',
+      component: () => import('./views/Display_goods.vue')
+    },
+    {
+      path: '/manage_display',
+      name: 'manage_display',
+      component: () => import('./views/Manage_display.vue')
     },
   ]
 })
