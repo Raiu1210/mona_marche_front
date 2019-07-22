@@ -15,8 +15,10 @@
 // @ is an alias to /src
 export default {
   name: 'home',
-  data: {
-    msg: 'Mona marche!'
-  }
+  data () {
+    return {
+      msg: 'Mona marche!'
+    }
+  },
 }
 </script>
