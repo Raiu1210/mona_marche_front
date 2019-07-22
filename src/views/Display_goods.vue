@@ -2,7 +2,7 @@
   <div class="display_goods">
     <br>
     <input class="goods_name" v-model="goods_name" placeholder="商品名を入力！"><br>
-    <textarea class="goods_discription" v-model="message" placeholder="商品の説明を書こう!"></textarea><br>
+    <textarea class="goods_discription" v-model="discription" placeholder="商品の説明を書こう!"></textarea><br>
     <input class="contact" v-model="contact" placeholder="SNSなどの連絡先を入力しよう！"><br>
     <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br><br>
     
@@ -31,10 +31,10 @@
       <input type="submit" value="decide" @click="submitClick">
     </form> -->
 
-    <!-- <p class="displayer_info">goods_name: {{ goods_name }}</p>
-    <p class="displayer_info">message: {{ message }}</p>
-    <p class="displayer_info">contact: {{ contact }}</p>
-    <p class="displayer_info">contact: {{ price }}</p> -->
+    <!-- <p class="displayer_info">goods_name: {{ goods_name }}</p> -->
+    <p class="displayer_info">discription: {{ discription }}</p>
+    <!-- <p class="displayer_info">contact: {{ contact }}</p> -->
+    <!-- <p class="displayer_info">contact: {{ price }}</p> -->
   </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
   data () {
     return {
       goods_name: '',
-      message: '',
+      discription: '',
       contact: '',
       price: '',
       uploadedImage: '',
@@ -94,8 +94,22 @@ export default {
     },
 
     async submitClick() {
-      let response = await Methods.post_goods_info(this.imageFile)
-      
+      let address = await window.mpurse.getAddress();
+      if (this.goods_name.length == 0) {
+        alert("商品の名前が入力されてないよ！");
+        exit(1);
+      } else if (this.goods_name.discription == 0) {
+        alert("商品の説明が入力されてないよ！");
+        exit(1);
+      } else if (this.goods_name.contact == 0) {
+        alert("連絡先が入力されていないよ!");
+        exit(1);
+      }
+
+      alert(address)
+
+      // let address = await window.mpurse.getAddress();
+      // let response = await Methods.post_goods_info(this.imageFile)
     }
   },
 }
