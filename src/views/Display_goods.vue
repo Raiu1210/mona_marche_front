@@ -3,7 +3,7 @@
     <input class="goods_name" v-model="goods_name" placeholder="商品名を入力！"><br>
     <textarea class="goods_discription" v-model="message" placeholder="商品の説明を書こう!"></textarea><br>
     <input class="contact" v-model="contact" placeholder="SNSなどの連絡先を入力しよう！"><br>
-    <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br>
+    <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br><br>
     
     <label v-show="!uploadedImage" class="input-item__label">画像を選択
       <input type="file" @change="onFileChange" />
