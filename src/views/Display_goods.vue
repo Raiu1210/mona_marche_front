@@ -1,5 +1,6 @@
 <template>
   <div class="display_goods">
+    <br>
     <input class="goods_name" v-model="goods_name" placeholder="商品名を入力！"><br>
     <textarea class="goods_discription" v-model="message" placeholder="商品の説明を書こう!"></textarea><br>
     <input class="contact" v-model="contact" placeholder="SNSなどの連絡先を入力しよう！"><br>
@@ -22,14 +23,25 @@
       </div>
     </div>
 
-    <p class="displayer_info">goods_name: {{ goods_name }}</p>
+    <br><br>
+    <input type="submit" value="出品する" @click="submitClick">
+
+    <!-- <form>
+      <input type="file" id="file" v-on:change="onFileChange">
+      <input type="submit" value="decide" @click="submitClick">
+    </form> -->
+
+    <!-- <p class="displayer_info">goods_name: {{ goods_name }}</p>
     <p class="displayer_info">message: {{ message }}</p>
     <p class="displayer_info">contact: {{ contact }}</p>
-    <p class="displayer_info">contact: {{ price }}</p>
+    <p class="displayer_info">contact: {{ price }}</p> -->
   </div>
 </template>
 
 <script>
+import Axios from "axios";
+import Methods from '@/api/methods'
+
 export default {
   name: 'goods_name',
   data () {
@@ -40,26 +52,22 @@ export default {
       price: '',
       uploadedImage: '',
       img_name: '',
+
+      imageFile: null
     }
   },
   methods: {
     onFileChange(e) {
-      const files = e.target.files || e.dataTransfer.files;
-      this.createImage(files[0]);
-      // 拡張子で分ける（※.が1つの想定です）
-      const imgNameExe = files[0].name.split('.');
+      this.imageFile = e.target.files || e.dataTransfer.files;
+      this.createImage(this.imageFile[0]);
+      const imgNameExe = this.imageFile[0].name.split('.');
 
-      // 拡張子から前
       let imgName = imgNameExe[0];
-
-      // 拡張子から後ろ
       const imgExe = imgNameExe[1];
 
-      // 表示したいMaxのByte数（全角10文字、半角20文字）
       const maxBytes = 20;
       const imgNameBytes = encodeURIComponent(imgName).replace(/%../g, 'x').length;
 
-      // 画像ファイルとMax Byte数の比較
       if (imgNameBytes > maxBytes) {
         const zenkaku = imgNameBytes - imgName.length;
         if (zenkaku > 0) {
@@ -69,10 +77,10 @@ export default {
         }
       }
 
-      // 短くカットしたものと.と拡張子の文字列の連結
       imgName = imgName + '.' + imgExe;
       this.img_name = imgName;
     },
+
     // アップロードした画像を表示
     createImage(file) {
       const reader = new FileReader();
@@ -84,6 +92,11 @@ export default {
     remove() {
       this.uploadedImage = false;
     },
+
+    async submitClick() {
+      let response = await Methods.post_goods_info(this.imageFile)
+      
+    }
   },
 }
 </script>
@@ -109,6 +122,7 @@ export default {
   width: 70%;
   height:30pt;
   font-size: 1.0em;
+  margin-top: 20px;
 }
 .price{
   width: 70%;

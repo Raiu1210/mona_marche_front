@@ -11,5 +11,26 @@ export default {
 
     const item = { address: address, message: message, signature: signature }
     return Api().post('/verify', item)
+  },
+
+  async post_goods_info(imageFile) {
+    try {
+      const formData = new FormData();
+      formData.append("file", imageFile[0]);
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        }
+      };
+      let res = await Api().post("/image", formData, config);
+      console.log(res);
+      if (res.data.status === "error") {
+        alert(res.data.error);
+      } else {
+        alert("登録完了")
+      }
+    } catch (error) {
+      alert("画像の送信に失敗しました");
+    }
   }
 }
