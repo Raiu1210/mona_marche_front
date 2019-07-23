@@ -111,7 +111,6 @@ export default {
         let signature = await Methods.ask_verify_sig()
         console.log(signature)
         if (signature["data"]["message"]) {
-          alert("verified")
           let response = await Methods.post_goods_info(this.goods_name, this.discription, this.contact, this.price, address, this.imageFile)
         } else {
           alert("署名が不正です")
