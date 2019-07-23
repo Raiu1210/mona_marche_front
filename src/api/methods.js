@@ -13,10 +13,18 @@ export default {
     return Api().post('/verify', item)
   },
 
-  async post_goods_info(imageFile) {
+  async post_goods_info(goods_name, discription, contact, price, address, imageFile) {
     try {
       const formData = new FormData();
+      formData.append("goods_name", goods_name);
+      formData.append("discription", discription);
+      formData.append("contact", contact);
+      formData.append("price", price);
+      formData.append("address", address);
       formData.append("file", imageFile[0]);
+
+      console.log(formData.get('goods_name'));
+
       const config = {
         headers: {
           "content-type": "multipart/form-data",
@@ -27,10 +35,10 @@ export default {
       if (res.data.status === "error") {
         alert(res.data.error);
       } else {
-        alert("登録完了")
+        alert("登録完了したよ！")
       }
     } catch (error) {
-      alert("画像の送信に失敗しました");
+      alert("商品の登録に失敗しちゃった orz\nもう一度やってみて！");
     }
   }
 }

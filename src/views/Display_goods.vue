@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import Methods from '@/api/methods'
 
 export default {
@@ -95,21 +94,32 @@ export default {
 
     async submitClick() {
       let address = await window.mpurse.getAddress();
-      if (this.goods_name.length == 0) {
-        alert("商品の名前が入力されてないよ！");
-        exit(1);
-      } else if (this.goods_name.discription == 0) {
-        alert("商品の説明が入力されてないよ！");
-        exit(1);
-      } else if (this.goods_name.contact == 0) {
-        alert("連絡先が入力されていないよ!");
-        exit(1);
+      //check input
+      try {
+        if (this.goods_name.length == 0) { 
+          throw new Error('商品名が入力されてないよ');
+        } if (this.discription.length == 0) {
+          throw new Error('商品説明が入力されてないよ');
+        } else if (this.contact.length == 0) {
+          throw new Error('連絡先が入力されてないよ');
+        } else if (this.price.length == 0 || isNaN(this.price)) {
+          throw new Error('金額設定がおかしいよ');
+        } else if (this.imageFile == null) {
+          throw new Error('画像が選択されてないよ');
+        }
+
+        let signature = await Methods.ask_verify_sig()
+        console.log(signature)
+        if (signature["data"]["message"]) {
+          alert("verified")
+          let response = await Methods.post_goods_info(this.goods_name, this.discription, this.contact, this.price, address, this.imageFile)
+        } else {
+          alert("署名が不正です")
+        }
+        
+      } catch (e) {
+        alert(e.message);
       }
-
-      alert(address)
-
-      // let address = await window.mpurse.getAddress();
-      // let response = await Methods.post_goods_info(this.imageFile)
     }
   },
 }
