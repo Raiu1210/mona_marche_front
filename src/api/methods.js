@@ -1,11 +1,10 @@
 import Api from './index'
 
 export default {
-  async ask_verify_sig () {
+  async ask_verify_sig (address) {
     var date = new Date();
     var a = date.getTime();
 
-    var address = await window.mpurse.getAddress()
     var message = "Please sign this message :" + a
     var signature = await window.mpurse.signMessage(message);
 
@@ -13,17 +12,18 @@ export default {
     return Api().post('/verify', item)
   },
 
-  async post_goods_info(goods_name, discription, contact, price, address, imageFile) {
+  async post_goods_info(goods_name, discription, contact, price, currency, address, imageFile) {
     try {
       const formData = new FormData();
       formData.append("goods_name", goods_name);
       formData.append("discription", discription);
       formData.append("contact", contact);
       formData.append("price", price);
+      formData.append("currency", currency);
       formData.append("address", address);
       formData.append("file", imageFile[0]);
 
-      console.log(formData.get('goods_name'));
+      // console.log(formData.get('goods_name'));
 
       const config = {
         headers: {

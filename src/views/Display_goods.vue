@@ -4,7 +4,13 @@
     <input class="goods_name" v-model="goods_name" placeholder="商品名を入力！"><br>
     <textarea class="goods_discription" v-model="discription" placeholder="商品の説明を書こう!"></textarea><br>
     <input class="contact" v-model="contact" placeholder="SNSなどの連絡先を入力しよう！"><br>
-    <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br><br>
+    <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br>
+    <select class="currency_tab" v-model="currency">
+      <option disabled value="">通貨を選ぼう！</option>
+      <option>MONA</option>
+      <option>JPY</option>
+    </select><br>
+    <br><br>
     
     <label v-show="!uploadedImage" class="input-item__label">画像を選択
       <input type="file" @change="onFileChange" />
@@ -24,17 +30,13 @@
     </div>
 
     <br><br>
-    <input type="submit" value="出品する" @click="submitClick">
-
-    <!-- <form>
-      <input type="file" id="file" v-on:change="onFileChange">
-      <input type="submit" value="decide" @click="submitClick">
-    </form> -->
+    <input class="submit_button" type="submit" value="出品する" @click="submitClick">
 
     <!-- <p class="displayer_info">goods_name: {{ goods_name }}</p> -->
-    <p class="displayer_info">discription: {{ discription }}</p>
+    <!-- <p class="displayer_info">discription: {{ discription }}</p> -->
     <!-- <p class="displayer_info">contact: {{ contact }}</p> -->
     <!-- <p class="displayer_info">contact: {{ price }}</p> -->
+    <!-- <span>Selected: {{ currency }}</span> -->
   </div>
 </template>
 
@@ -49,9 +51,9 @@ export default {
       discription: '',
       contact: '',
       price: '',
+      currency: '',
       uploadedImage: '',
       img_name: '',
-
       imageFile: null
     }
   },
@@ -90,6 +92,7 @@ export default {
     },
     remove() {
       this.uploadedImage = false;
+      this.imageFile = null;
     },
 
     async submitClick() {
@@ -104,14 +107,16 @@ export default {
           throw new Error('連絡先が入力されてないよ');
         } else if (this.price.length == 0 || isNaN(this.price)) {
           throw new Error('金額設定がおかしいよ');
+        } else if (this.currency != 'MONA' && this.currency != "JPY") {
+          throw new Error('通貨選んだ？');
         } else if (this.imageFile == null) {
           throw new Error('画像が選択されてないよ');
         }
 
-        let signature = await Methods.ask_verify_sig()
+        let signature = await Methods.ask_verify_sig(address)
         console.log(signature)
         if (signature["data"]["message"]) {
-          let response = await Methods.post_goods_info(this.goods_name, this.discription, this.contact, this.price, address, this.imageFile)
+          let response = await Methods.post_goods_info(this.goods_name, this.discription, this.contact, this.price, this.currency, address, this.imageFile)
         } else {
           alert("署名が不正です")
         }
@@ -153,19 +158,28 @@ export default {
   font-size: 1.0em;
   margin-top: 10px;
 }
+.currency_tab{
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+}
 .input-item_label{
   font-size: 1.0rem;
 }
-.button {
-  display: block;
-  position: relative;
-  margin: 0 auto;
-  width: 70pt;
-  border: solid 1px silver;
-  border-radius: 0.5rem 0.5rem;
-  padding: 0.5rem 1.5rem;
-  margin-top: 1rem;
+.submit_button {
+  width: 130px;
+  height: 50px;
+  font-size: 20px;
+  display: inline-block;
+  padding: 0.5em 1em;
   text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #c58668;
+  margin-bottom: 200px;
 }
 
 .preview-item-file {
