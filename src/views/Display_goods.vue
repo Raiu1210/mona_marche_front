@@ -25,7 +25,7 @@
       />
       <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
         <p class="preview-item-name">{{ img_name }}</p>
-        <e-icon class="preview-item-icon">close</e-icon>
+        <e-icon class="preview-item-icon">close image</e-icon>
       </div>
     </div>
 
@@ -96,7 +96,6 @@ export default {
     },
 
     async submitClick() {
-      let address = await window.mpurse.getAddress();
       //check input
       try {
         if (this.goods_name.length == 0) { 
@@ -113,10 +112,19 @@ export default {
           throw new Error('画像が選択されてないよ');
         }
 
-        let signature = await Methods.ask_verify_sig(address)
-        console.log(signature)
-        if (signature["data"]["message"]) {
-          let response = await Methods.post_goods_info(this.goods_name, this.discription, this.contact, this.price, this.currency, address, this.imageFile)
+        const {address, message, signature, result} = await Methods.ask_verify_sig()
+        if (result["data"]["message"]) {
+          let response = await Methods.post_goods_info(
+            address,
+            message,
+            signature,
+            this.goods_name,
+            this.discription,
+            this.contact,
+            this.price,
+            this.currency,
+            this.imageFile);
+          this.clear_input()
         } else {
           alert("署名が不正です")
         }
@@ -124,6 +132,14 @@ export default {
       } catch (e) {
         alert(e.message);
       }
+    },
+    clear_input() {
+      this.goods_name = '';
+      this.discription = '';
+      this.contact = '';
+      this.price = '';
+      this.currency = '';
+      this.remove()
     }
   },
 }
