@@ -4,7 +4,7 @@
     <input class="goods_name" v-model="goods_name" placeholder="商品名を入力！"><br>
     <textarea class="goods_discription" v-model="discription" placeholder="商品の説明を書こう!"></textarea><br>
     <input class="contact" v-model="contact" placeholder="SNSなどの連絡先を入力しよう！"><br>
-    <input class="price" v-model="price" placeholder="金額をMONAで入力しよう（JPY対応はもうちょっと待ってね！)"><br>
+    <input class="price" v-model="price" placeholder="金額を入力しよう"><br>
     <select class="currency_tab" v-model="currency">
       <option disabled value="">通貨を選ぼう！</option>
       <option>MONA</option>
@@ -44,7 +44,7 @@
 import Methods from '@/api/methods'
 
 export default {
-  name: 'goods_name',
+  name: 'Display_goods',
   data () {
     return {
       goods_name: '',

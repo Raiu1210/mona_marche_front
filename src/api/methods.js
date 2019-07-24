@@ -40,5 +40,5 @@ export default {
     } catch (error) {
       alert("商品の登録に失敗しちゃった orz\nもう一度やってみて！");
     }
-  }
+  },
 }
