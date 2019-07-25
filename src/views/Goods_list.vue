@@ -3,6 +3,9 @@
     <!-- <h1>This is a goods list page</h1> -->
     <p>{{ mona_price }}</p>
     <input class="submit_button" type="submit" value="出品する" @click="get_mona_price">
+    <input class="submit_button" type="submit" value="リスト取得" @click="get_goods_list">
+
+    {{this.goods_list}}
   </div>
 </template>
 
@@ -15,7 +18,12 @@ export default {
   data() {
     return {
       mona_price: '111',
+      goods_data_list:[],
     }
+  },
+  created(){
+    console.log(get_goods_list())
+    this.goods_data_list = get_goods_list()
   },
   methods: {
     async get_mona_price() {  
@@ -28,6 +36,12 @@ export default {
       console.log(mona_price)
       console.log(typeof(mona_price))
     },
+    async get_goods_list() {
+      let goods_list = await Methods.get_goods_list();
+      
+      console.log(goods_list["data"][0])
+      return goods_list["data"]
+    }
   }
 }
 </script>

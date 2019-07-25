@@ -10,12 +10,30 @@
         </ul>
       </nav>
     </div>
-    <router-view/>
   </div>
 </template>
 
 <script>
+import Methods from '@/api/methods'
 
+export default {
+  data() {
+    return {
+      goods_list: null
+    }
+  },
+  watch: {
+    '$route': async function (to, from) {
+      if (to.path == "/goods_list") {
+        alert("Goods_list now ")
+        let goods_list = await Methods.get_goods_list();
+
+        console.log(goods_list["data"])
+        this.goods_list = goods_list["data"]
+      }
+    }
+  },
+}
 </script>
 
 

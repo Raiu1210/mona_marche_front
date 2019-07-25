@@ -46,4 +46,10 @@ export default {
       alert("商品の登録に失敗しちゃった orz\nもう一度やってみて！");
     }
   },
+
+  async get_goods_list() {
+    let res = await Api().get("/goods_list");
+    
+    return res;
+  }
 }
