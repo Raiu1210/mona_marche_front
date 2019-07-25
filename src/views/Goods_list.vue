@@ -5,7 +5,7 @@
     <input class="submit_button" type="submit" value="出品する" @click="get_mona_price">
     <input class="submit_button" type="submit" value="リスト取得" @click="get_goods_list">
 
-    {{this.goods_list}}
+    {{get_goods_list()}}
   </div>
 </template>
 
