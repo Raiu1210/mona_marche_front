@@ -1,10 +1,18 @@
 <template>
   <div class="gooods_list">
     <!-- <h1>This is a goods list page</h1> -->
-    <p>{{ mona_price }}</p>
-    
-    {{goods_list}}
-    
+    <!-- <p>{{ mona_price }}</p>
+    {{goods_list}} -->
+    <ul id="example-1">
+      <li v-for="{id, goods_name, image_path} in goods_list" :key="id">
+        <router-link :to="`/product/${ id }`">
+          <img src="https://localhost:3000/img/M9hY5XcC7MSD54DfqcEojiKm9QMgXeQhGK_2019-7-25-19-47-11.png" width="150" height="150">
+          {{ goods_name }}
+        </router-link>
+      </li>
+    </ul>
+
+    {{ goods_list }}
   </div>
 </template>
 
@@ -16,9 +24,12 @@ export default {
   name: 'goods_list',
   data() {
     return {
-      mona_price: '111',
+      mona_price: '',
       goods_list:[],
-      test: 'bbb'
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
     }
   },
   created(){

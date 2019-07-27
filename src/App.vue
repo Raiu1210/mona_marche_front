@@ -15,19 +15,11 @@
 </template>
 
 <script>
-import Methods from '@/api/methods'
 
-export default {
-  data() {
-    return {
-      goods_list: null
-    }
-  },
-}
 </script>
 
 
-<style>
+<style　scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

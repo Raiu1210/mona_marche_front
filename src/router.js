@@ -17,6 +17,14 @@ export default new Router({
       component: () => import('./views/Goods_list.vue')
     },
     {
+      path: '/goods_list/:id',
+      // name: 'goods_list',
+      component: () => import('./views/Goods.vue'),
+      props: route => ({
+        id: Number(route.params.id)
+      })
+    },
+    {
       path: '/display_goods',
       name: 'display_goods',
       component: () => import('./views/Display_goods.vue')
