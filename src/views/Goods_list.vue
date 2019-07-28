@@ -95,8 +95,4 @@ export default {
     text-align: center;
   }
 
-  /* #goods_list ul li:nth-child(3n-1) {
-    margin: 0 2%;
-    margin-top: 30px;
-  } */
 </style>

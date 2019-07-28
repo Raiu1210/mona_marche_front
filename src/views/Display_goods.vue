@@ -31,12 +31,6 @@
 
     <br><br>
     <input class="submit_button" type="submit" value="出品する" @click="submitClick">
-
-    <!-- <p class="displayer_info">goods_name: {{ goods_name }}</p> -->
-    <!-- <p class="displayer_info">discription: {{ discription }}</p> -->
-    <!-- <p class="displayer_info">contact: {{ contact }}</p> -->
-    <!-- <p class="displayer_info">contact: {{ price }}</p> -->
-    <!-- <span>Selected: {{ currency }}</span> -->
   </div>
 </template>
 
@@ -184,9 +178,9 @@ export default {
   font-size: 1.0rem;
 }
 .submit_button {
-  width: 130px;
-  height: 50px;
-  font-size: 20px;
+  width: 160px;
+  height: 70px;
+  font-size: 26px;
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
@@ -196,6 +190,12 @@ export default {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
   border-bottom: solid 3px #c58668;
   margin-bottom: 200px;
+}
+.submit_button:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+  border-bottom: none;
 }
 
 .preview-item-file {

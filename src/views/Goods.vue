@@ -16,8 +16,9 @@
     <h3>署名データ</h3>
     <p>address : {{ goods_info[0]['address'] }}</p>
     <p>message : {{ goods_info[0]['message'] }}</p>
-    <p>signature: {{ goods_info[0]['signature'] }}</p><br><br>
-    
+    <p>signature : {{ goods_info[0]['signature'] }}</p><br><br>
+
+    <button class="pay_button" v-on:click="pay_to_displayer()">支払う</button>
   </div>
 </template>
 
@@ -48,6 +49,9 @@ export default {
       let mona_price = result["data"]["data"]["transactions"][0]["price"]
       this.mona_price = mona_price;
     },
+    async pay_to_displayer() {
+      alert("aaa")
+    }
   }
 }
 </script>
@@ -66,15 +70,37 @@ export default {
   }
 
   h3 {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 10%;
     margin-right: 10%;
     text-align: left;
   }
 
   p {
+    margin-top: 0px;
     margin-left: 13%;
     margin-right: 5%;
+    margin-bottom: 10px;
     text-align: left;
+  }
+
+  .pay_button {
+    width: 160px;
+    height: 70px;
+    font-size: 26px;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #ffffff;
+    background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #c58668;
+  }
+  .pay_button:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
   }
 </style>
