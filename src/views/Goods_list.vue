@@ -5,8 +5,8 @@
     {{goods_list}} -->
     <ul id="example-1">
       <li v-for="{id, goods_name, image_path} in goods_list" :key="id">
-        <router-link :to="`/product/${ id }`">
-          <img src="https://localhost:3000/img/M9hY5XcC7MSD54DfqcEojiKm9QMgXeQhGK_2019-7-25-19-47-11.png" width="150" height="150">
+        <router-link class="goods_preview" :to="`/product/${ id }`">
+          <img :src="`https://localhost:3000/${image_path}`" width="150" height="150">
           {{ goods_name }}
         </router-link>
       </li>
@@ -51,3 +51,11 @@ export default {
   }
 }
 </script>
+
+
+<style>
+  .goods_preview{
+    width: 80%;
+    height: 100px;
+  }
+</style>
