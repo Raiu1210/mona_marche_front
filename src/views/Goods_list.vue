@@ -3,7 +3,7 @@
     <ul id="example-1">
       <li v-for="{id, goods_name, contact, price, currency, image_path} in goods_list" :key="id">
         <router-link :to="`/goods_list/${ id }`">
-          <img class="goods_img" :src="`https://localhost:3000/${image_path}`"><br><br>
+          <img class="thumb_nail" :src="`https://localhost:3000/${image_path}`"><br><br>
           <h2 class="goods_name">{{ goods_name }}</h2><br><br>
           <h3>出品者 {{contact}}</h3><br>
           <h3 v-if="currency == 'JPY'">{{price / mona_price}} MONA</h3>
@@ -72,7 +72,7 @@ export default {
     background: #ccc;
   }
 
-  img.goods_img {
+  img.thumb_nail {
     width: 100%;
     height: 50%;
   }
