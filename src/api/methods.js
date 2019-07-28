@@ -51,5 +51,11 @@ export default {
     let res = await Api().get("/goods_list");
     
     return res;
+  },
+
+  async get_goods_info(id) {
+    let res = await Api().get("/goods_detail?id=" + id);
+
+    return res
   }
 }

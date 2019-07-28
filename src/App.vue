@@ -43,21 +43,28 @@
 nav {
   background-color: #eef118;
 }
+
+ul {
+  margin-bottom: 30px;
+}
+
 ul > li {
   display: inline-block;
   margin: 0;
   padding: 0;
-  width: 100px;
-  height: 60px;
-  line-height: 60px;
+  width: 130px;
+  height: 80px;
+  line-height: 80px;
   text-align: center;
 }
+
 ul > li > a {
   display: block;
   text-decoration: none;
   color: #fff;
   transition: all .3s ease-in-out;
 }
+
 .router-link-active > a,
 ul > li > a:hover {
   background-color: #fff;
