@@ -2,22 +2,17 @@
   <div id="goods_list">
     <ul id="example-1">
       <li v-for="{id, goods_name, contact, price, currency, image_path} in goods_list" :key="id">
-        <router-link :to="`/goods_list/${ id }`">
-          <img class="thumb_nail" :src="`https://localhost:3000/${image_path}`"><br><br>
-          <h2 class="goods_name">{{ goods_name }}</h2><br><br>
-          <h3>出品者 {{contact}}</h3><br>
-          <h3 v-if="currency == 'JPY'">{{price / mona_price}} MONA</h3>
-          <h3 v-else>{{price}} MONA</h3>
+        <router-link class="goods_link" :to="`/goods_list/${ id }`">
+          <div class="goods_link">
+            <img class="thumb_nail" :src="`https://localhost:3000/${image_path}`"><br><br>
+            <h2 class="goods_name">{{ goods_name }}</h2><br><br>
+            <h4>出品者 {{contact}}</h4><br>
+            <h4 v-if="currency == 'JPY'">{{price / mona_price}} MONA</h4>
+            <h4 v-else>{{price}} MONA</h4>
+          </div>
         </router-link>
       </li>
     </ul>
-
-    <br><br>
-
-    {{ goods_list }}
-
-     <br><br>
-     {{mona_price}}
   </div>
 </template>
 
@@ -31,10 +26,6 @@ export default {
     return {
       mona_price: 0,
       goods_list:[],
-      items: [
-        { message: 'Foo' },
-        { message: 'Bar' }
-      ]
     }
   },
   created(){
@@ -69,18 +60,33 @@ export default {
   }
 
   #goods_list {
-    background: #ccc;
+    /* background: #ccc; */
   }
 
   img.thumb_nail {
     width: 100%;
-    height: 50%;
+    height: 40%;
   }
 
   #goods_list ul:after {
     content: "";
     clear: both;
     display: block;
+  }
+
+  .goods_link {
+    text-decoration: none;
+    width: 250px;
+    height: 500px;
+  }
+  .goods_link:link { 
+    color : #000000; 
+  }
+  .goods_link:hover{
+    color : #f68504;
+  }
+  .goods_link:visited { 
+    color : #000000; 
   }
 
   #goods_list ul li {
@@ -90,8 +96,8 @@ export default {
     margin-top: 30px;
     display: block;
     float: left;
+    border: 1px solid #006666;
     list-style-type: none;
-    background: #0cc;
     text-align: center;
   }
 
