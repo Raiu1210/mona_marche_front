@@ -57,5 +57,31 @@ export default {
     let res = await Api().get("/goods_detail?id=" + id);
 
     return res
+  },
+
+  async ask_my_goods_list() {
+    let address = await window.mpurse.getAddress();
+
+    const item = { address: address }
+    const res = await Api().post('/get_my_goods', item)
+
+    return res
+  },
+
+  async ask_delete_goods(delete_id) {
+    var date = new Date();
+    var a = date.getTime();
+    let address = await window.mpurse.getAddress();
+
+    var message = "I confirm to delete this goods :" + a
+    var signature = await window.mpurse.signMessage(message);
+
+    const item = { address: address, message: message, signature: signature, delete_id:delete_id }
+    const result = await Api().post('/delete_goods', item)
+
+    if (result["data"]["message"]){
+      alert("削除したよ！")
+      return true
+    }
   }
 }

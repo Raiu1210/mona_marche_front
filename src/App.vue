@@ -6,7 +6,7 @@
           <router-link tag="li" to="/" exact><a>ホーム</a></router-link>
           <router-link tag="li" to="/goods_list"><a>商品一覧</a></router-link>
           <router-link tag="li" to="/display_goods"><a>出品する</a></router-link>
-          <router-link tag="li" to="/manage_display"><a>出品管理</a></router-link>
+          <router-link tag="li" to="/my_goods_list"><a>出品管理</a></router-link>
         </ul>
       </nav>
     </div>

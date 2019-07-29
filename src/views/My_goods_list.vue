@@ -1,10 +1,10 @@
 <template>
-  <div id="goods_list">
+  <div id="my_goods_list">
     <ul>
-      <li v-for="{id, goods_name, contact, price, currency, image_path} in goods_list" :key="id">
-        <router-link class="goods_link" :to="`/goods_list/${ id }`">
+      <li v-for="{id, goods_name, contact, price, currency, image_path} in my_goods_list" :key="id">
+        <router-link class="my_goods_link" :to="`/my_goods_list/${ id }`">
           <div class="goods_link">
-            <img class="thumb_nail" :src="`https://localhost:3000/${image_path}`"><br><br>
+            <img class="my_goods_img" :src="`https://localhost:3000/${image_path}`"><br><br>
             <h2 class="goods_name">{{ goods_name }}</h2><br><br>
             <h4>出品者 {{contact}}</h4><br>
             <h4 v-if="currency == 'JPY'">{{price / mona_price}} MONA</h4>
@@ -16,21 +16,25 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios'
 import Methods from '@/api/methods'
 
 export default {
-  name: 'goods_list',
+  name: 'my_goods_list',
   data() {
     return {
-      mona_price: 0,
-      goods_list:[],
+      mona_price: 1,
+      my_goods_list:[],
     }
   },
-  created(){
-    let a = this.get_goods_list()
-    let b = this.get_mona_price()
+  created() {
+    this.get_mona_price()
+    Methods.ask_my_goods_list().then(value => {
+      console.log(value["data"])
+      this.my_goods_list = value["data"]
+    });
   },
   methods: {
     async get_mona_price() {  
@@ -39,15 +43,9 @@ export default {
       let mona_price = result["data"]["data"]["transactions"][0]["price"]
       this.mona_price = mona_price;
     },
-    get_goods_list() {
-      let goods_list = Methods.get_goods_list().then(value => {
-        this.goods_list = value["data"]
-      });
-    },
   }
 }
 </script>
-
 
 <style>
   * {
@@ -59,37 +57,33 @@ export default {
     word-wrap: break-word;
   }
 
-  #goods_list {
-    /* background: #ccc; */
-  }
-
-  img.thumb_nail {
+  img.my_goods_img {
     width: 100%;
     height: 40%;
   }
 
-  #goods_list ul:after {
+  #my_goods_list ul:after {
     content: "";
     clear: both;
     display: block;
   }
 
-  .goods_link {
+  .my_goods_link {
     text-decoration: none;
     width: 250px;
     height: 500px;
   }
-  .goods_link:link { 
+  .my_goods_link:link { 
     color : #000000; 
   }
-  .goods_link:hover{
+  .my_goods_link:hover{
     color : #f68504;
   }
-  .goods_link:visited { 
+  .my_goods_link:visited { 
     color : #000000; 
   }
 
-  #goods_list ul li {
+  #my_goods_list ul li {
     width: 250px;
     height: 500px;
     margin-left: 2.4%;
