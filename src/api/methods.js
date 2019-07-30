@@ -92,8 +92,15 @@ export default {
   },
 
   async ask_tx_from_me_list() {
-    let from_address = await window.mpurse.getAddress()
-    let res = await Api().get("/tx_from_list?from_address=" + from_address)
+    let my_address = await window.mpurse.getAddress()
+    let res = await Api().get("/tx_from_me_list?from_address=" + my_address)
+
+    return res
+  },
+
+  async ask_tx_to_me_list() {
+    let my_address = await window.mpurse.getAddress()
+    let res = await Api().get("/tx_to_me_list?to_address=" + my_address)
 
     return res
   }

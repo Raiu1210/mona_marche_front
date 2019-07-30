@@ -40,7 +40,7 @@ export default {
       this.mona_price = mona_price;
     },
     get_goods_list() {
-      let goods_list = Methods.get_goods_list().then(value => {
+      Methods.get_goods_list().then(value => {
         this.goods_list = value["data"]
       });
     },
