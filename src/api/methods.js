@@ -83,5 +83,18 @@ export default {
       alert("削除したよ！")
       return true
     }
+  },
+
+  async save_tx_history(to_address, tx_hash) {
+    let from_address = await window.mpurse.getAddress()
+    const item = { from_address: from_address, to_address: to_address, tx_hash: tx_hash }
+    await Api().post('/save_tx', item)
+  },
+
+  async ask_tx_from_me_list() {
+    let from_address = await window.mpurse.getAddress()
+    let res = await Api().get("/tx_from_list?from_address=" + from_address)
+
+    return res
   }
 }

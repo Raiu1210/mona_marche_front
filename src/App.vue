@@ -7,6 +7,7 @@
           <router-link tag="li" to="/goods_list"><a>商品一覧</a></router-link>
           <router-link tag="li" to="/display_goods"><a>出品する</a></router-link>
           <router-link tag="li" to="/my_goods_list"><a>出品管理</a></router-link>
+          <router-link tag="li" to="/tx_list"><a>TXリスト</a></router-link>
         </ul>
       </nav>
     </div>
@@ -17,6 +18,15 @@
 <script>
 
 </script>
+
+
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+</style>
 
 
 <style　scoped>

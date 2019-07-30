@@ -40,5 +40,10 @@ export default new Router({
         id: Number(route.params.id)
       })
     },
+    {
+      path: '/tx_list',
+      name: 'tx_list',
+      component: () => import('./views/TX_list.vue')
+    },
   ]
 })

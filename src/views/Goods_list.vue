@@ -50,11 +50,6 @@ export default {
 
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
   h2.goods_name {
     word-wrap: break-word;
   }

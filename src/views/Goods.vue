@@ -60,7 +60,10 @@ export default {
       }
       const memo_value = 'purchase from mona_marche'
 
-      await window.mpurse.sendAsset(address, "MONA", price, 'plain', memo_value)
+      const send_result = await window.mpurse.sendAsset(address, "MONA", price, 'plain', memo_value)
+      Methods.save_tx_history(address, send_result)
+
+      alert("送金したよ！\nTX_hash : " + send_result)
     }
   }
 }
