@@ -89,6 +89,12 @@ export default {
       this.imageFile = null;
     },
 
+    getDecimalPointLength(number) {
+      var numbers = String(number).split('.');
+  
+      return (numbers[1]) ? numbers[1].length : 0;
+    },
+
     async submitClick() {
       //check input
       try {
@@ -100,6 +106,8 @@ export default {
           throw new Error('連絡先が入力されてないよ');
         } else if (this.price.length == 0 || isNaN(this.price)) {
           throw new Error('金額設定がおかしいよ');
+        } else if (this.getDecimalPointLength(this.price) > 8) {
+          throw new Error('小数点以下は1億分の位までにしてね');
         } else if (this.currency != 'MONA' && this.currency != "JPY") {
           throw new Error('通貨選んだ？');
         } else if (this.imageFile == null) {

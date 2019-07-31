@@ -4,13 +4,13 @@
     <img class="goods_img" :src="`https://localhost:3000/${goods_info[0]['image_path']}`"><br>
     
     <h3>商品説明</h3>
-    <p class="goods_info">{{ goods_info[0]["discription"] }}</p>
+    <p class="goods_info" style="white-space: pre-line;">{{ goods_info[0]["discription"] }}</p>
 
     <h3>連絡先</h3>
     <p class="goods_info">{{ goods_info[0]["contact"] }}</p>
 
     <h3>金額</h3>
-    <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{goods_info[0]['price'] / mona_price}} MONA</p>
+    <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{Math.round( (goods_info[0]['price'] / mona_price) * 100000000) / 100000000 }} MONA</p>
     <p class="goods_info" v-else>{{ goods_info[0]['price'] }} MONA</p>
 
     <h3>タイムスタンプ</h3>
@@ -57,7 +57,7 @@ export default {
       var price = 0
       const address = this.goods_info[0]['address']
       if (this.goods_info[0]['currency'] == 'JPY'){
-        price = this.goods_info[0]['price'] / this.mona_price
+        price = Math.round((this.goods_info[0]['price'] / this.mona_price) * 100000000) / 100000000
       } else {
         price = this.goods_info[0]['price']
       }
