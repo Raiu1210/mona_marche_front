@@ -1,7 +1,7 @@
 <template>
   <div id="my_goods_list">
     <ul>
-      <li v-for="{id, goods_name, contact, price, currency, image_path} in my_goods_list" :key="id">
+      <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems" :key="id">
         <router-link class="my_goods_link" :to="`/my_goods_list/${ id }`">
           <div class="goods_link">
             <img class="my_goods_img" :src="`https://localhost:3000/${image_path}`"><br><br>
@@ -42,6 +42,11 @@ export default {
       let result = await axios.get(bitbank_api).then(response => (this.info = response))
       let mona_price = result["data"]["data"]["transactions"][0]["price"]
       this.mona_price = mona_price;
+    },
+  },
+  computed: {
+    reverseItems() {
+        return this.my_goods_list.slice().reverse();
     },
   }
 }

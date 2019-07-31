@@ -13,6 +13,9 @@
     <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{goods_info[0]['price'] / mona_price}} MONA</p>
     <p class="goods_info" v-else>{{ goods_info[0]['price'] }} MONA</p>
 
+    <h3>タイムスタンプ</h3>
+    <p class="goods_info">{{ goods_info[0]["timestamp"] }}</p>
+
     <h3>署名データ</h3>
     <p class="goods_info" >address : {{ goods_info[0]['address'] }}</p>
     <p class="goods_info" >message : {{ goods_info[0]['message'] }}</p>
@@ -61,7 +64,7 @@ export default {
       const memo_value = 'purchase from mona_marche'
 
       const send_result = await window.mpurse.sendAsset(address, "MONA", price, 'plain', memo_value)
-      Methods.save_tx_history(address, send_result)
+      Methods.save_tx_history(address, price, send_result)
 
       alert("送金したよ！\nTX_hash : " + send_result)
     }

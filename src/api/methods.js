@@ -76,7 +76,7 @@ export default {
     var message = "I confirm to delete this goods :" + a
     var signature = await window.mpurse.signMessage(message);
 
-    const item = { address: address, message: message, signature: signature, delete_id:delete_id }
+    const item = { address:address, message:message, signature:signature, delete_id:delete_id }
     const result = await Api().post('/delete_goods', item)
 
     if (result["data"]["message"]){
@@ -85,9 +85,9 @@ export default {
     }
   },
 
-  async save_tx_history(to_address, tx_hash) {
+  async save_tx_history(to_address, price, tx_hash) {
     let from_address = await window.mpurse.getAddress()
-    const item = { from_address: from_address, to_address: to_address, tx_hash: tx_hash }
+    const item = { from_address:from_address, to_address:to_address, price:price, tx_hash:tx_hash }
     await Api().post('/save_tx', item)
   },
 

@@ -1,7 +1,7 @@
 <template>
   <div id="goods_list">
     <ul>
-      <li v-for="{id, goods_name, contact, price, currency, image_path} in goods_list" :key="id">
+      <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems" :key="id">
         <router-link class="goods_link" :to="`/goods_list/${ id }`">
           <div class="goods_link">
             <img class="thumb_nail" :src="`https://localhost:3000/${image_path}`"><br><br>
@@ -43,6 +43,11 @@ export default {
       Methods.get_goods_list().then(value => {
         this.goods_list = value["data"]
       });
+    },
+  },
+  computed: {
+    reverseItems() {
+        return this.goods_list.slice().reverse();
     },
   }
 }
