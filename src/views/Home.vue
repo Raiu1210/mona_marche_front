@@ -49,6 +49,7 @@ export default {
 <style>
   .how_to_use {
     margin: auto;
+    margin-bottom: 200px;
     width: 80%;
     border: 1px solid #006666;
   }
