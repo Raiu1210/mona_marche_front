@@ -27,6 +27,7 @@ export default {
     return {
       mona_price: 1,
       my_goods_list:[],
+      page: 0
     }
   },
   created() {
@@ -46,7 +47,7 @@ export default {
   },
   computed: {
     reverseItems() {
-        return this.my_goods_list.slice().reverse();
+      return this.my_goods_list.slice().reverse();
     },
   }
 }
