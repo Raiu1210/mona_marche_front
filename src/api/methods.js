@@ -79,10 +79,7 @@ export default {
     const item = { address:address, message:message, signature:signature, delete_id:delete_id }
     const result = await Api().post('/delete_goods', item)
 
-    if (result["data"]["message"]){
-      alert("削除したよ！")
-      return true
-    }
+    return result["data"]["message"]
   },
 
   async save_tx_history(to_address, price, tx_hash) {

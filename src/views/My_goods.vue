@@ -10,7 +10,7 @@
     <p class="goods_info">{{ goods_info[0]["contact"] }}</p>
 
     <h3>金額</h3>
-    <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{goods_info[0]['price'] / mona_price}} MONA</p>
+    <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{Math.round( (goods_info[0]['price'] / mona_price) * 100000000) / 100000000 }} MONA</p>
     <p class="goods_info" v-else>{{ goods_info[0]['price'] }} MONA</p>
 
     <h3>タイムスタンプ</h3>
@@ -43,7 +43,7 @@ export default {
   created(){
     this.get_mona_price()
     Methods.get_goods_info(this.id).then(value => {
-        this.goods_info = value["data"]
+      this.goods_info = value["data"]
     });
   },
   methods: {
@@ -54,7 +54,11 @@ export default {
       this.mona_price = mona_price;
     },
     async delete_goods() {
-      if (await Methods.ask_delete_goods(this.id)) {
+      const delete_status = await Methods.ask_delete_goods(this.id)
+      console.log(delete_status)
+      
+      if (delete_status) {
+        alert("削除したよー")
         this.$router.push('/my_goods_list')
       }
     }

@@ -7,7 +7,7 @@
             <img class="my_goods_img" :src="`https://localhost:3000/${image_path}`"><br><br>
             <h2 class="goods_name">{{ goods_name }}</h2><br><br>
             <h4>出品者 {{contact}}</h4><br>
-            <h4 v-if="currency == 'JPY'">{{price / mona_price}} MONA</h4>
+            <h4 v-if="currency == 'JPY'">{{ Math.round((price / mona_price) * 100000000) / 100000000 }} MONA</h4>
             <h4 v-else>{{price}} MONA</h4>
           </div>
         </router-link>
