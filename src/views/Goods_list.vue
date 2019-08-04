@@ -1,10 +1,9 @@
 <template>
   <div id="goods_list">
-    <button v-on:click="page -= 1" v-show="page > 0">前のページ</button>
-    <button v-on:click="page += 1" v-show="ppc*page+ppc < reverseItems.length">次のページ</button>
-    <h3>page {{page}}</h3>
+    <button class="pre_button" v-on:click="page -= 1" v-show="page > 0"> ← 前へ</button>
+    <p class="page_preview">ページ {{page+1}}</p>
+    <button class="next_button" v-on:click="page += 1" v-show="ppc*page+ppc < reverseItems.length">次へ →</button>
 
-    <h1>{{reverseItems.length}}</h1>
     <ul>
       <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems.slice(ppc*page, ppc*page+ppc)" :key="id">
         <router-link class="goods_link" :to="`/goods_list/${ id }`">
@@ -13,11 +12,15 @@
             <h2 class="goods_name">{{ goods_name }}</h2><br><br>
             <h4>出品者 {{contact}}</h4><br>
             <h4 v-if="currency == 'JPY'">{{ Math.round((price / mona_price) * 100000000) / 100000000 }} MONA</h4>
-            <h4 v-else>{{price}} MONA</h4>
+            <h4 v-else>{{price+1}} MONA</h4>
           </div>
         </router-link>
       </li>
     </ul>
+
+    <button class="pre_button" v-on:click="page -= 1" v-show="page > 0"> ← 前へ</button>
+    <p class="page_preview">ページ {{page+1}}</p>
+    <button class="next_button" v-on:click="page += 1" v-show="ppc*page+ppc < reverseItems.length">次へ →</button>
   </div>
 </template>
 
@@ -32,7 +35,7 @@ export default {
       mona_price: 0,
       goods_list:[],
       page: 0,
-      ppc: 4, // page per contents
+      ppc: 2, // page per contents
     }
   },
   created(){
@@ -54,7 +57,7 @@ export default {
   },
   computed: {
     reverseItems() {
-        return this.goods_list.slice().reverse();
+      return this.goods_list.slice().reverse();
     },
   }
 }
@@ -106,6 +109,37 @@ export default {
     border: 1px solid #006666;
     list-style-type: none;
     text-align: center;
+  }
+
+  .pre_button {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #00bcd4;
+    transition: .4s;
+    display: inline-block;
+  }
+
+  .next_button {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #00bcd4;
+    transition: .4s;
+    display: inline-block;
+  }
+
+  .page_preview {
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
   }
 
 </style>

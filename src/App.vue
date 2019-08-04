@@ -55,7 +55,7 @@ nav {
 }
 
 ul {
-  margin-bottom: 30px;
+  margin-bottom: 3px;
 }
 
 ul > li {

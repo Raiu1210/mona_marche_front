@@ -1,7 +1,11 @@
 <template>
   <div id="my_goods_list">
+    <button class="pre_button" v-on:click="page -= 1" v-show="page > 0"> ← 前へ</button>
+    <p class="page_preview">ページ {{page+1}}</p>
+    <button class="next_button" v-on:click="page += 1" v-show="ppc*page+ppc < reverseItems.length">次へ →</button>
+    
     <ul>
-      <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems" :key="id">
+      <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems.slice(ppc*page, ppc*page+ppc)" :key="id">
         <router-link class="my_goods_link" :to="`/my_goods_list/${ id }`">
           <div class="goods_link">
             <img class="my_goods_img" :src="`https://localhost:3000/${image_path}`"><br><br>
@@ -13,6 +17,10 @@
         </router-link>
       </li>
     </ul>
+
+    <button class="pre_button" v-on:click="page -= 1" v-show="page > 0"> ← 前へ</button>
+    <p class="page_preview">ページ {{page+1}}</p>
+    <button class="next_button" v-on:click="page += 1" v-show="ppc*page+ppc < reverseItems.length">次へ →</button>
   </div>
 </template>
 
@@ -27,7 +35,8 @@ export default {
     return {
       mona_price: 1,
       my_goods_list:[],
-      page: 0
+      page: 0,
+      ppc: 2,
     }
   },
   created() {

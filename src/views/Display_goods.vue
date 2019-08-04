@@ -12,20 +12,15 @@
     </select><br>
     <br><br>
     
-    <label v-show="!uploadedImage" class="input-item__label">画像を選択
+    <label v-show="!uploadedImage" class="input-item_label">画像を選択
       <input type="file" @change="onFileChange" />
     </label>
 
     <div class="preview-item">
-      <img
-        v-show="uploadedImage"
-        class="preview-item-file"
-        :src="uploadedImage"
-        alt=""
-      />
-      <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-        <p class="preview-item-name">{{ img_name }}</p>
-        <e-icon class="preview-item-icon">close image</e-icon>
+      <img v-show="uploadedImage" class="preview-item-file" :src="uploadedImage"/>
+      <div v-show="uploadedImage" class="preview-item-btn" >
+        <p class="preview-item-name">{{ img_name }}</p><br>
+        <button clas="remove_img_button" @click="remove">画像を閉じる</button>
       </div>
     </div>
 
@@ -183,8 +178,16 @@ export default {
   font-size: 20px;
 }
 .input-item_label{
-  font-size: 1.0rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #040708;
+  border: solid 2px #2946c9;
+  border-radius: 3px;
+  transition: .4s;
 }
+
 .submit_button {
   width: 160px;
   height: 70px;
