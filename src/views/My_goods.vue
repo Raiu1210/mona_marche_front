@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <h1>{{ goods_info[0]["goods_name"] }}</h1>
-    <img class="goods_img" :src="`https://localhost:3000/${goods_info[0]['image_path']}`"><br>
+    <img class="goods_img" :src="`https://monamarche.info${goods_info[0]['image_path']}`"><br>
     
     <h3>商品説明</h3>
     <p class="goods_info">{{ goods_info[0]["discription"] }}</p>

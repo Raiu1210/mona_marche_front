@@ -47,6 +47,7 @@ export default {
 
 
 <style>
+
   .how_to_use {
     margin: auto;
     margin-bottom: 200px;

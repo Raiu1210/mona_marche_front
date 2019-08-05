@@ -39,6 +39,7 @@
 }
 #nav {
   padding: 0px;
+  margin-bottom: 50px;
 }
 
 #nav a {
