@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <h1>{{ goods_info[0]["goods_name"] }}</h1>
-    <img class="goods_img" :src="`https://monamarche.info${goods_info[0]['image_path']}`"><br>
+    <img class="goods_img" :src="`https://localhost:8080${goods_info[0]['image_path']}`"><br>
     
     <h3>商品説明</h3>
     <p class="goods_info" style="white-space: pre-line;">{{ goods_info[0]["discription"] }}</p>
@@ -71,18 +71,23 @@ export default {
     }
   },
   head: {
-   title: function () {
+   title() {
      return {
        inner: this.goods_info[0]["goods_name"]
      }
    },
-   meta: function () {
-    //  return [
-    //  { property: 'og:url', content: "https://monamarche.info/#/goods_list/" +  this.goods_info[0]["id"]},
-    //  { property: 'og:description', content: this.description },
-    //  { name: 'description', content: this.description },
-    //  { name: 'keywords', content: this.keywords },
-    // ]
+   meta() {
+     return [
+      { property: 'og:url', content: "https://monamarche.info/#/goods_list/" +  this.goods_info[0]["id"]},
+      { property: 'og:description', content: this.goods_info[0]["discription"] },
+      { property: 'og:title', content: this.goods_info[0]["goods_name"] },
+      { property: 'og:image', content: "https://monamarche.info" + this.goods_info[0]['image_path'] },
+      { name: 'twitter:card', content: "summary_large_image" },
+      { name: 'twitter:site', content: "@Mr_1484" },
+      { name: 'twitter:title', content: this.goods_info[0]["goods_name"] },
+      { name: 'twitter:description', content: this.goods_info[0]["discription"] },
+      { name: 'twitter:image', content: "https://monamarche.info" + this.goods_info[0]['image_path'] },
+    ]
    }
  }
 
