@@ -44,6 +44,7 @@ export default {
     this.get_mona_price()
     Methods.get_goods_info(this.id).then(value => {
         this.goods_info = value["data"]
+        this.$emit('updateHead')
     });
   },
   methods: {
@@ -68,7 +69,23 @@ export default {
 
       alert("送金したよ！\nTX_hash : " + send_result)
     }
-  }
+  },
+  head: {
+   title: function () {
+     return {
+       inner: this.goods_info[0]["goods_name"]
+     }
+   },
+   meta: function () {
+    //  return [
+    //  { property: 'og:url', content: "https://monamarche.info/#/goods_list/" +  this.goods_info[0]["id"]},
+    //  { property: 'og:description', content: this.description },
+    //  { name: 'description', content: this.description },
+    //  { name: 'keywords', content: this.keywords },
+    // ]
+   }
+ }
+
 }
 </script>
 
