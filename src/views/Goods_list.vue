@@ -8,7 +8,7 @@
       <li v-for="{id, goods_name, contact, price, currency, image_path} in reverseItems.slice(ppc*page, ppc*page+ppc)" :key="id">
         <router-link class="goods_link" :to="`/goods_list/${ id }`">
           <div class="goods_link">
-            <img class="thumb_nail" :src="`https://localhost:8080${image_path}`"><br><br>
+            <img class="thumb_nail" :src="`https://localhost:3000${image_path}`"><br><br>
             <h2 class="goods_name">{{ goods_name }}</h2><br><br>
             <h4>出品者 {{contact}}</h4><br>
             <h4 v-if="currency == 'JPY'">{{ Math.round((price / mona_price) * 100000000) / 100000000 }} MONA</h4>

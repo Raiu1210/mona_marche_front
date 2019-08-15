@@ -1,5 +1,8 @@
 <template>
   <div class="tx_list">
+    <p>※ここに表示されているTXはこのアプリ内でmpurseを使ったTXが表示されます。</p>
+    <p>別のウォレットアプリなどから送金した場合にTXハッシュは表示されないので、</p>
+    <p>その場合自分でブロックチェーンを確認してね</p><br>
     <h2 class="title_label">あなた宛のTX</h2>
     <table class="tx_to_me_table" border="1">
       <tr>
