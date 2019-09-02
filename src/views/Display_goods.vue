@@ -10,6 +10,7 @@
       <option>MONA</option>
       <option>JPY</option>
     </select><br>
+    <input class="amount" v-model="amount" placeholder="在庫数を入力しよう"><br>
     <br><br>
     
     <label v-show="!uploadedImage" class="input-item_label">画像を選択
@@ -40,6 +41,7 @@ export default {
       discription: '',
       contact: '',
       price: '',
+      amount: '',
       currency: '',
       uploadedImage: '',
       img_name: '',
@@ -103,6 +105,10 @@ export default {
           throw new Error('金額設定がおかしいよ');
         } else if (this.getDecimalPointLength(this.price) > 8) {
           throw new Error('小数点以下は1億分の位までにしてね');
+        } else if (this.amount.length == 0 || isNaN(this.amount)) {
+          throw new Error('在庫数の入力がおかしいよ');
+        } else if (!Number.isInteger(Number(this.amount)) || this.amount < 1) {
+          throw new Error('在庫数は正の整数じゃないとだめだよ');
         } else if (this.currency != 'MONA' && this.currency != "JPY") {
           throw new Error('通貨選んだ？');
         } else if (this.imageFile == null) {
@@ -119,6 +125,7 @@ export default {
             this.discription,
             this.contact,
             this.price,
+            this.amount,
             this.currency,
             this.imageFile);
           this.clear_input()
@@ -166,6 +173,12 @@ export default {
   margin-top: 20px;
 }
 .price{
+  width: 70%;
+  height:30pt;
+  font-size: 1.0em;
+  margin-top: 10px;
+}
+.amount {
   width: 70%;
   height:30pt;
   font-size: 1.0em;
@@ -229,6 +242,5 @@ label::after {
   color: #888;
   padding-left: 1rem;
 }
-
 
 </style>
