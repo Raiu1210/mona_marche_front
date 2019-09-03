@@ -15,7 +15,7 @@ export default {
     return {address, message, signature, result}
   },
 
-  async post_goods_info(address, message, signature, goods_name, discription, contact, price, currency, imageFile) {
+  async post_goods_info(address, message, signature, goods_name, discription, contact, price, amount, currency, imageFile) {
     try {
       const formData = new FormData();
       formData.append("address", address);
@@ -25,6 +25,7 @@ export default {
       formData.append("discription", discription);
       formData.append("contact", contact);
       formData.append("price", price);
+      formData.append("amount", amount);
       formData.append("currency", currency);
       formData.append("file", imageFile[0]);
 
