@@ -83,9 +83,9 @@ export default {
     return result["data"]["message"]
   },
 
-  async save_tx_history(to_address, price, tx_hash) {
+  async save_tx_history(id, to_address, price, tx_hash) {
     let from_address = await window.mpurse.getAddress()
-    const item = { from_address:from_address, to_address:to_address, price:price, tx_hash:tx_hash }
+    const item = { id:id, from_address:from_address, to_address:to_address, price:price, tx_hash:tx_hash }
     await Api().post('/save_tx', item)
   },
 

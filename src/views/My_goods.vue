@@ -16,6 +16,10 @@
     <h3>タイムスタンプ</h3>
     <p class="goods_info">{{ goods_info[0]["timestamp"] }}</p>
 
+    <h3>在庫数</h3>
+    <p class="goods_info" v-if="goods_info[0]['amount'] > 0">{{goods_info[0]['amount']}}</p>
+    <p class="goods_info" v-else>在庫切れ</p>
+
     <h3>署名データ</h3>
     <p class="goods_info" >address : {{ goods_info[0]['address'] }}</p>
     <p class="goods_info" >message : {{ goods_info[0]['message'] }}</p>

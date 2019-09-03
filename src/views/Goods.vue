@@ -13,6 +13,10 @@
     <p class="goods_info" v-if="goods_info[0]['currency'] == 'JPY'">{{Math.round( (goods_info[0]['price'] / mona_price) * 100000000) / 100000000 }} MONA</p>
     <p class="goods_info" v-else>{{ goods_info[0]['price'] }} MONA</p>
 
+    <h3>在庫数</h3>
+    <p class="goods_info" v-if="goods_info[0]['amount'] > 0">{{goods_info[0]['amount']}}</p>
+    <p class="goods_info" v-else>在庫切れ</p>
+
     <h3>タイムスタンプ</h3>
     <p class="goods_info">{{ goods_info[0]["timestamp"] }}</p>
 
@@ -21,7 +25,7 @@
     <p class="goods_info" >message : {{ goods_info[0]['message'] }}</p>
     <p class="goods_info" >signature : {{ goods_info[0]['signature'] }}</p><br><br>
 
-    <button class="pay_button" v-on:click="pay_to_displayer()">支払う</button>
+    <button class="pay_button" v-if="goods_info[0]['amount'] > 0" v-on:click="pay_to_displayer()">支払う</button>
   </div>
 </template>
 
@@ -65,7 +69,7 @@ export default {
       const memo_value = 'purchase from mona_marche'
 
       const send_result = await window.mpurse.sendAsset(address, "MONA", price, 'plain', memo_value)
-      Methods.save_tx_history(address, price, send_result)
+      Methods.save_tx_history(this.id, address, price, send_result)
 
       alert("送金したよ！\nTX_hash : " + send_result)
     }

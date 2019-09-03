@@ -13,7 +13,9 @@
             <h4>出品者 {{contact}}</h4><br>
             <h4 v-if="currency == 'JPY'">{{ Math.round((price / mona_price) * 100000000) / 100000000 }} MONA</h4>
             <h4 v-else>{{price}} MONA</h4><br><br><br>
-            <h4>在庫数 : {{amount}}</h4>
+
+            <h4 v-if="amount > 0">在庫数 : {{amount}}</h4>
+            <h4 v-else>在庫切れ</h4>
           </div>
         </router-link>
       </li>
