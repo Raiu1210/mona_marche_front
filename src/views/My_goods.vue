@@ -18,7 +18,7 @@
 
     <h3>在庫数</h3>
     <p class="goods_info" v-if="goods_info[0]['amount'] > 0">{{goods_info[0]['amount']}}</p>
-    <p class="goods_info" v-else>在庫切れ</p>
+    <p class="sold" v-else>在庫切れ</p>
 
     <h3>署名データ</h3>
     <p class="goods_info" >address : {{ goods_info[0]['address'] }}</p>
@@ -96,6 +96,14 @@ export default {
     margin-right: 5%;
     margin-bottom: 10px;
     text-align: left;
+  }
+  p.sold{
+    margin-top: 0px;
+    margin-left: 13%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #ff0000;
   }
 
   .delete_button {

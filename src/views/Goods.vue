@@ -15,7 +15,7 @@
 
     <h3>在庫数</h3>
     <p class="goods_info" v-if="goods_info[0]['amount'] > 0">{{goods_info[0]['amount']}}</p>
-    <p class="goods_info" v-else>在庫切れ</p>
+    <p class="sold" v-else>在庫切れ</p>
 
     <h3>タイムスタンプ</h3>
     <p class="goods_info">{{ goods_info[0]["timestamp"] }}</p>
@@ -72,6 +72,7 @@ export default {
       Methods.save_tx_history(this.id, address, price, send_result)
 
       alert("送金したよ！\nTX_hash : " + send_result)
+      this.$router.push('/tx_list')
     }
   },
   head: {
@@ -125,6 +126,14 @@ export default {
     margin-bottom: 10px;
     text-align: left;
   }
+  p.sold{
+    margin-top: 0px;
+    margin-left: 13%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #ff0000;
+  }
 
   .pay_button {
     width: 160px;
@@ -146,4 +155,5 @@ export default {
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
     border-bottom: none;
   }
+  
 </style>

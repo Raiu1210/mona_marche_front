@@ -15,7 +15,7 @@
             <h4 v-else>{{price}} MONA</h4><br><br><br>
 
             <h4 v-if="amount > 0">在庫数 : {{amount}}</h4>
-            <h4 v-else>在庫切れ</h4>
+            <h4 class="sold" v-else>在庫切れ</h4>
           </div>
         </router-link>
       </li>
@@ -100,6 +100,9 @@ export default {
   }
   .goods_link:visited { 
     color : #000000; 
+  }
+  .sold {
+    color: #ff0000;
   }
 
   #goods_list ul li {
