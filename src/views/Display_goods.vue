@@ -142,6 +142,7 @@ export default {
       this.discription = '';
       this.contact = '';
       this.price = '';
+      this.amount = '';
       this.currency = '';
       this.remove()
     }

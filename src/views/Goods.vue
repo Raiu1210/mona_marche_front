@@ -72,6 +72,7 @@ export default {
       Methods.save_tx_history(this.id, address, price, send_result)
 
       var wanna_check = confirm("送金したよ！\nTX_hash : " + send_result + "\nTXを確認しますか？")
+      console.log(wanna_check)
       if (wanna_check) {
         this.$router.push('/tx_list')
       } else {
