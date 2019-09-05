@@ -71,8 +71,12 @@ export default {
       const send_result = await window.mpurse.sendAsset(address, "MONA", price, 'plain', memo_value)
       Methods.save_tx_history(this.id, address, price, send_result)
 
-      alert("送金したよ！\nTX_hash : " + send_result)
-      this.$router.push('/tx_list')
+      var wanna_check = confirm("送金したよ！\nTX_hash : " + send_result + "\nTXを確認しますか？")
+      if (wanna_check) {
+        this.$router.push('/tx_list')
+      } else {
+        this.$router.push('/goods_list')
+      }
     }
   },
   head: {
